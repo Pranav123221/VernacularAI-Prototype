@@ -2,132 +2,236 @@
 
 VernacularAI is an education-specific AI layer for mother-tongue-based primary education. It combines curriculum-grounded retrieval, pedagogical generation, Indic-language translation, and voice-ready interaction into one teacher-to-learner workflow.
 
-This prototype addresses Smart India Hackathon problem statement **SIH26042** for Smart Education. Its primary demo is a Grade 3 Environmental Studies flow for “Why do plants need sunlight?” from teacher input to a grounded explanation with Santali output. A smaller Grade 1 Mathematics sample remains available for regression checks.
+This prototype addresses Smart India Hackathon problem statement **SIH26042** under the **Smart Education** theme. Its primary demo is a Grade 3 Environmental Studies flow for **“Why do plants need sunlight?”**, from teacher input to a grounded explanation with Santali output. A smaller Grade 1 Mathematics sample remains available for regression checks.
 
-## What is real in this MVP
+## 🚀 Live Demo
+
+**Hosted Prototype:**  
+https://vernacular-ai-sih-demo--123pra.replit.app
+
+> The hosted prototype demonstrates the current MVP workflow. Some advanced Indic speech and translation providers remain optional and are designed behind provider interfaces.
+
+---
+
+## 🎯 Problem Statement
+
+**SIH Problem Statement ID:** SIH26042  
+**Title:** AI-Powered Vernacular Pedagogy and Real-Time Translation Tool for Mother Tongue-Based Primary Education  
+**Organization:** Government of Jharkhand  
+**Department:** Department of Higher & Technical Education  
+**Theme:** Smart Education  
+**Category:** Software  
+**Team:** Quantora
+
+---
+
+## 💡 What is VernacularAI?
+
+VernacularAI focuses on the gap between **language translation and actual learning**.
+
+A general translation system can convert words from one language to another, but primary education also requires:
+
+- Curriculum-grounded explanations
+- Age-appropriate language
+- Contextual examples
+- Practice questions and quizzes
+- Teacher assistance
+- Voice-ready interaction
+- Support for low-connectivity environments
+
+VernacularAI combines these capabilities into a single education-focused workflow.
+
+---
+
+## ✨ What is Real in this MVP
 
 - Curated curriculum passages are loaded from `data/curriculum/` and split into indexed chunks.
 - Retrieval uses token vectors and cosine similarity, with top-k results and chapter filtering.
 - Responses are generated only when matching curriculum context is found.
 - Pedagogical output is age-appropriate, structured, and tied to the retrieved chapter.
-- Hindi-to-Santali is behind a provider boundary. The included offline provider is a labeled phrasebook fallback for the demo; it does not claim IndicTrans2 quality.
-- Voice input and text-to-speech use browser capabilities when available, and visibly degrade to text when unavailable.
+- Hindi-to-Santali is behind a provider boundary.
+- The included offline provider is a labeled phrasebook fallback for the demo and does not claim IndicTrans2 quality.
+- Voice input and text-to-speech use browser capabilities when available and visibly degrade to text when unavailable.
 - Actual pipeline timings are measured on every response.
-- Feedback, curriculum, questions, responses, and document/chunk tables are defined in Drizzle, with feedback persistence exercised by the API.
+- Feedback, curriculum, questions, responses, and document/chunk tables are defined in Drizzle.
+- The provider boundary is ready for IndicTrans2, IndicLID, IndicConformer, IndicF5, and an API/local LLM without making large model downloads a startup requirement.
 
-The current provider boundary is intentionally ready for IndicTrans2, IndicLID, IndicConformer, IndicF5, and an API/local LLM without making any of those large model downloads a startup requirement.
+---
 
-## Architecture
+## 🏗️ Architecture
 
 ```text
-Teacher / student text or browser voice
-              |
-              v
-      API learning workflow
-      | language detection
-      | translation provider
-      | curriculum retrieval (top-k cosine)
-      | pedagogical provider
-      | voice-ready output metadata
-              |
-              v
-     Grounded bilingual learning response
-```
+Teacher / Student Text or Browser Voice
+                    |
+                    v
+          API Learning Workflow
+                    |
+       +------------+------------+
+       | Language Detection     |
+       | Translation Provider   |
+       | Curriculum Retrieval   |
+       | Pedagogical Provider   |
+       | Voice-ready Metadata   |
+       +------------+------------+
+                    |
+                    v
+       Grounded Bilingual Learning
+                Response
+--
 
-See [docs/architecture.md](docs/architecture.md) for provider boundaries, offline behavior, and the model upgrade path.
+🔄 Core Learning Workflow
 
-## Stack
+Text / Voice Question
+        ↓
+Language Detection + ASR
+        ↓
+Indic Translation
+        ↓
+Curriculum Retrieval (RAG)
+        ↓
+Pedagogical AI
+        ↓
+Simple Explanation
++ Examples
++ Quiz
+        ↓
+Text / Voice Response
 
-- React + Vite + TypeScript
-- Express 5 API server
-- OpenAPI-first contracts with Orval-generated React Query and Zod helpers
-- PostgreSQL + Drizzle ORM schema
-- Browser SpeechRecognition and speechSynthesis when supported
-- Lightweight local retrieval for the CPU-friendly demo
+The objective is not simply to translate content, but to convert curriculum content into a learner-friendly experience.
 
-## Run locally
+--
+🛠️ Technology Stack
 
-Prerequisites: Node 24, pnpm, and a PostgreSQL database exposed as `DATABASE_URL`.
+Frontend
+React
+Vite
+TypeScript
+Tailwind CSS
+Backend
+Express 5
+OpenAPI-first API contracts
+Orval-generated React Query and Zod helpers
+AI / NLP
+IndicTrans2 — translation provider
+IndicLID — language identification
+IndicConformer — speech recognition
+IndicF5 / Indic-TTS — future text-to-speech integration
+LLM — pedagogical generation
+RAG — curriculum-grounded generation
+Multilingual embeddings
+Database
+PostgreSQL
+Drizzle ORM
+pgvector / vector retrieval architecture
+Deployment & Runtime
+Replit hosted prototype
+Docker / Docker Compose
+ONNX / quantized model deployment planned for low-end devices
+Browser Voice
+SpeechRecognition
+speechSynthesis
+--
 
-```bash
-pnpm install
-pnpm --filter @workspace/api-spec run codegen
-pnpm --filter @workspace/db run push
-pnpm --filter @workspace/api-server run dev
-```
+📚 Curriculum & Knowledge Base
 
-In another terminal:
+Curriculum Content
+       ↓
+Document Extraction
+       ↓
+Chunking
+       ↓
+Embeddings
+       ↓
+Vector Retrieval
+       ↓
+Relevant Curriculum Context
+       ↓
+Pedagogical Generation
 
-```bash
-pnpm --filter @workspace/vernacular-ai run dev
-```
+-
 
-The workspace workflows are the preferred way to run the API and frontend in Replit. The app uses `/api` for backend requests and `/` for the web experience.
+📖 References & Live Resources
 
-## Environment variables
+Curriculum
 
-Copy `.env.example` to `.env` for local work. Never commit credentials.
+NCERT Textbook Portal
+https://www.ncert.nic.in/textbook.php
 
-- `DATABASE_URL`: PostgreSQL connection string.
-- `LLM_PROVIDER`: reserved provider selector; the default `offline` keeps the MVP deterministic.
-- `LLM_MODEL`: optional future model name.
-- `HF_TOKEN`: optional model-download token; never required for the basic demo.
-- `CORS_ORIGINS`: allowed frontend origins.
+Indic Language AI
 
-## Curriculum and indexing
+AI4Bharat IndicTrans2
+https://github.com/AI4Bharat/IndicTrans2
 
-The demo passages are original, curriculum-aligned content rather than copied NCERT pages. This avoids representing unlicensed text as official NCERT content. Add reviewed text under `data/curriculum/grade_1/mathematics/`; the API indexes the available files at startup and exposes chunks through `/api/curriculum`.
+AI4Bharat Models
+https://models.ai4bharat.org/
 
-## API
+AI4Bharat IndicConformer ASR
+https://github.com/AI4Bharat/IndicConformerASR
 
-See [docs/api.md](docs/api.md) and `lib/api-spec/openapi.yaml`.
+AI4Bharat IndicLID
+https://github.com/AI4Bharat/IndicLID
 
-Key endpoints:
+AI4Bharat IndicF5
+https://github.com/AI4Bharat/IndicF5
 
-- `GET /api/healthz` and `GET /api/health`
-- `GET /api/curriculum`
-- `GET /api/curriculum/:chapterId`
-- `GET /api/sources`
-- `POST /api/ask`
-- `POST /api/translate`
-- `POST /api/quiz`
-- `POST /api/lesson/generate`
-- `POST /api/generate-lesson`
-- `POST /api/asr`
-- `POST /api/tts`
-- `GET /api/system-status`
-- `GET /api/metrics`
-- `POST /api/feedback`
+AI4Bharat Indic-TTS
+https://github.com/AI4Bharat/Indic-TTS
 
-## Docker
+Research
 
-`docker-compose.yml` documents the three-service shape (frontend, API, Postgres). The Replit workflow is recommended for the hosted workspace; Docker is for local parity and later deployment.
+Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks
+https://arxiv.org/abs/2005.11401
 
-```bash
-docker compose up --build
-```
+See docs/references.md for detailed references and license notes.
 
-## Evaluation
 
-Evaluation helpers are in `evaluation/`:
+--
+📈 Proposed Evaluation Metrics
 
-```bash
-python evaluation/retrieval_eval.py
-python evaluation/translation_eval.py
-python evaluation/latency_eval.py
-python evaluation/grounding_eval.py
-```
+Translation quality
+Speech recognition quality
+Retrieval accuracy
+Curriculum-grounding rate
+End-to-end latency
+Explanation quality
+Quiz performance
+Teacher usability
+Student comprehension improvement
 
-These scripts are smoke checks and do not claim benchmark scores. The end-to-end evaluator is `python evaluation/evaluate.py` and expects the API to be running.
+The goal is to measure whether the system improves the learning workflow, not just translation quality.
 
-## Tests
+--
+🌱 Impact
 
-With the API running on port 8080, run `bash tests/api-smoke.sh`. It checks health, curriculum, translation, grounded asking, quiz generation, provider status, metrics, and unavailable voice fallbacks.
+Students
+Learn concepts in a familiar language
+Receive simple explanations
+Ask questions using text or voice
+Practice through quizzes
+Teachers
+Receive multilingual teaching assistance
+Explain Hindi-origin curriculum in target languages
+Generate practice material
+Reduce language-related classroom barriers
+Schools
+Support mother-tongue-based multilingual education
+Provide a reusable digital learning workflow
+Extend access to multilingual educational content
 
-## References and licenses
+--
+👨‍💻 Author
 
-See [docs/references.md](docs/references.md). IndicTrans2, IndicConformer, IndicLID, and IndicF5 are optional future providers and must be reviewed against their current model/repository licenses before distribution. The current offline phrasebook and curriculum samples are included for this prototype.
+Pranav Sharma
 
-## Limitations and next steps
+Built as part of Team Quantora for Smart India Hackathon 2026.
 
-The current demo deliberately uses a deterministic offline provider so the core flow works without downloading large models or requiring an external API key. It should not be presented as production-quality Santali translation, ASR, TTS, or an LLM benchmark. Next steps are to add reviewed Santali parallel data, connect supported Indic models behind the same interfaces, persist question/response events, and package cached chunks and embeddings for Android 9+ devices.
+--
+🙏 Acknowledgements
+
+We acknowledge the open-source Indian language AI ecosystem, including AI4Bharat, as well as publicly available educational and research resources that inform the prototype architecture.
+
+--
+
+⭐ VernacularAI
+
+Bridging the gap between language and learning.
