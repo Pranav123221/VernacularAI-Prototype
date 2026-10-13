@@ -4,12 +4,7 @@ VernacularAI is an education-specific AI layer for mother-tongue-based primary e
 
 This prototype addresses Smart India Hackathon problem statement **SIH26042** under the **Smart Education** theme. Its primary demo is a Grade 3 Environmental Studies flow for **“Why do plants need sunlight?”**, from teacher input to a grounded explanation with Santali output. A smaller Grade 1 Mathematics sample remains available for regression checks.
 
-## 🚀 Live Demo
 
-**Hosted Prototype:**  
-https://vernacular-ai-sih-demo--123pra.replit.app
-
-> The hosted prototype demonstrates the current MVP workflow. Some advanced Indic speech and translation providers remain optional and are designed behind provider interfaces.
 
 ---
 
