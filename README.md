@@ -220,6 +220,8 @@ Pranav Sharma
 
 Built as part of Team Quantora for Smart India Hackathon 2026.
 
+team members: Adil khan , Surya pratap tomar
+
 --
 🙏 Acknowledgements
 
