@@ -1,0 +1,14 @@
+VernacularAI curated curriculum sample
+Source note: This is an original, curriculum-aligned demonstration text inspired by Grade 3 EVS learning goals. It is not presented as a reproduction of an NCERT textbook.
+
+Chapter: Plants and Sunlight
+Grade: 3
+Subject: Environmental Studies
+
+Plants need sunlight, air, water, and space to grow. Sunlight gives green leaves energy to make food for the plant.
+
+Roots take in water from the soil. The stem holds the plant up and carries water to different parts. Leaves use sunlight, air, and water to help the plant make food.
+
+We can observe this by keeping one small plant in sunlight and another in a dark cupboard. The plant with sunlight stays greener and stronger. Plants also give us fruits, vegetables, shade, and clean air.
+
+Teacher prompt: Ask children to name a plant near their home and point to its roots, stem, and leaves.
