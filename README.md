@@ -1,4 +1,18 @@
 # VernacularAI
+
+> ⚠️ **Copyright Notice**
+>
+> © 2026 VernacularAI Contributors. All rights reserved, subject to applicable third-party rights and licenses.
+>
+> This repository contains original project code, documentation, and design materials. Public visibility does not grant blanket permission to reproduce, redistribute, or commercially exploit these materials.
+>
+> Unauthorized copying or misrepresentation of original project materials may violate applicable intellectual property laws. Third-party components remain subject to their respective licenses.
+>
+⚠️ 
+> Unauthorized reproduction, redistribution, or misrepresentation of these materials may result in a formal takedown request or other appropriate legal action where warranted.
+>
+> For permissions, licensing, or collaboration inquiries, please contact the project contributors.
+> 
 ### Curriculum-Grounded Multilingual AI for Mother-Tongue-Based Primary Education
 
 **VernacularAI** is an education-focused AI system designed to bridge the gap between multilingual content delivery and meaningful learning. It combines curriculum-grounded information retrieval, pedagogical response generation, Indic-language translation, and browser-based voice interaction into a unified teacher-to-learner workflow.
