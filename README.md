@@ -1,15 +1,14 @@
 # VernacularAI
 
-> ⚠️ **Copyright Notice**
+> > ⚠️ **Copyright & Intellectual Property Notice**
 >
-> © 2026 VernacularAI Contributors. All rights reserved, subject to applicable third-party rights and licenses.
+> © 2026 VernacularAI Contributors. All rights reserved, subject to applicable third-party rights, licenses, and contributor agreements.
 >
-> This repository contains original project code, documentation, and design materials. Public visibility does not grant blanket permission to reproduce, redistribute, or commercially exploit these materials.
+> This repository contains original project code, documentation, and design materials. Public availability does not grant blanket permission to reproduce, redistribute, or commercially use these materials.
 >
-> Unauthorized copying or misrepresentation of original project materials may violate applicable intellectual property laws. Third-party components remain subject to their respective licenses.
+> Unauthorized reproduction, redistribution, or misrepresentation of original project materials may violate applicable intellectual property laws and may result in a formal takedown request or other appropriate legal action, where warranted.
 >
-⚠️ 
-> Unauthorized reproduction, redistribution, or misrepresentation of these materials may result in a formal takedown request or other appropriate legal action where warranted.
+> Third-party components remain subject to their respective licenses. Any permissions granted under applicable hackathon terms and conditions remain unaffected.
 >
 > For permissions, licensing, or collaboration inquiries, please contact the project contributors.
 > 
